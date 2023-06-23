@@ -6,12 +6,15 @@ import API.SolicitacaoCEP;
 import BD.DrogariasDao;
 import BD.FuncionariosDao;
 import BD.LaboratoriosDao;
+import BD.MedicamentosDao;
 import ModelTables.DrogariasTableModel;
 import ModelTables.FuncionariosTableModel;
 import ModelTables.LaboratoriosTableModel;
+import ModelTables.MedicamentosTableModel;
 import Objs.Drogarias;
 import Objs.Funcionarios;
 import Objs.Laboratorios;
+import Objs.Medicamentos;
 import com.melloware.jintellitype.JIntellitype;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -65,7 +68,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         JIntellitype.getInstance().registerHotKey(1, JIntellitype.MOD_CONTROL, (int) 'U');
-        JIntellitype.getInstance().registerHotKey(2, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT, (int) 'C');
+        JIntellitype.getInstance().registerHotKey(2, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT + JIntellitype.MOD_ALT, (int) 'L');
         JIntellitype.getInstance().registerHotKey(3, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT, (int) 'U');
         JIntellitype.getInstance().registerHotKey(4, JIntellitype.MOD_CONTROL, (int) 'D');
         JIntellitype.getInstance().registerHotKey(5, JIntellitype.MOD_ALT, (int) 'D');
@@ -74,25 +77,26 @@ public class Main extends javax.swing.JFrame {
         JIntellitype.getInstance().registerHotKey(8, JIntellitype.MOD_CONTROL, (int) 'M');
         JIntellitype.getInstance().registerHotKey(9, JIntellitype.MOD_ALT, (int) 'M');
         JIntellitype.getInstance().registerHotKey(10, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT, (int) 'M');
-        JIntellitype.getInstance().registerHotKey(11, JIntellitype.MOD_CONTROL, (int) 'C');
-        JIntellitype.getInstance().registerHotKey(12, JIntellitype.MOD_CONTROL, (int) 'V');
+        JIntellitype.getInstance().registerHotKey(11, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT, (int) 'C');
+        JIntellitype.getInstance().registerHotKey(12, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT, (int) 'V');
 //</editor-fold>
 
         tables();
         menuBar.setVisible(false);
         barUser.setVisible(false);
         tela("Login");
-        jTextArea1.setLineWrap(true);
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="Variaveis">
     private final CardLayout cl;
     FuncionariosTableModel FTM = new FuncionariosTableModel();
     DrogariasTableModel DTM = new DrogariasTableModel();
     LaboratoriosTableModel LTM = new LaboratoriosTableModel();
+    MedicamentosTableModel MTM = new MedicamentosTableModel();
     Funcionarios f = new Funcionarios();
     Drogarias d = new Drogarias();
     Laboratorios l = new Laboratorios();
+    Medicamentos m = new Medicamentos();
     //</editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,30 +113,62 @@ public class Main extends javax.swing.JFrame {
         labelUserLog = new javax.swing.JLabel();
         telaVendas = new javax.swing.JPanel();
         telaCompras = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        labelValMedicamento = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        labelValorTotal = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         telaCadMed = new javax.swing.JPanel();
-        jtextCidadeCadLab1 = new javax.swing.JTextField();
-        cbxEstadoCadLab1 = new javax.swing.JComboBox<>();
-        jformInsEstCadLab1 = new javax.swing.JFormattedTextField();
-        labelCidadeCadLab1 = new javax.swing.JLabel();
-        jtextBairroCadLab1 = new javax.swing.JTextField();
+        jtextValCusCadMed = new javax.swing.JTextField();
+        labelValCusCadMed = new javax.swing.JLabel();
+        jtextValVenCadMed = new javax.swing.JTextField();
         labelDescCadMed = new javax.swing.JLabel();
-        jtextRuaCadLab1 = new javax.swing.JTextField();
-        labelBairroCadLab1 = new javax.swing.JLabel();
-        labelRuaCadLab1 = new javax.swing.JLabel();
+        labelValVenCadMed = new javax.swing.JLabel();
         labelTipoCadMed = new javax.swing.JLabel();
-        jtextComplementoCadLab1 = new javax.swing.JTextField();
-        jtextNumCadLab1 = new javax.swing.JTextField();
+        jtextQtndCadMed = new javax.swing.JTextField();
         labelNomeCadMed = new javax.swing.JLabel();
-        labelNumCadLab1 = new javax.swing.JLabel();
-        labelCompCadLab1 = new javax.swing.JLabel();
-        labelEstadoCadDLab1 = new javax.swing.JLabel();
+        labelDataUltCompCadMed = new javax.swing.JLabel();
+        labelQtndCadMed = new javax.swing.JLabel();
         jtextNomeCadMed = new javax.swing.JTextField();
-        btnCadDrog2 = new javax.swing.JButton();
-        labelInsEstCadLab1 = new javax.swing.JLabel();
+        btnCadMed = new javax.swing.JButton();
         jtextTipoCadMed = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jareaDescCadMed = new javax.swing.JTextArea();
+        jformDataUltComCadMed = new javax.swing.JFormattedTextField();
         telaAltMed = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblMed = new javax.swing.JTable();
+        labelNomeAltLab1 = new javax.swing.JLabel();
+        labelIDAltLab1 = new javax.swing.JLabel();
+        radioCresAltMed = new javax.swing.JRadioButton();
+        jtextIDAltMed = new javax.swing.JTextField();
+        radioDescAltMed = new javax.swing.JRadioButton();
+        labelOrderByMed = new javax.swing.JLabel();
+        jtextNomeAltMed = new javax.swing.JTextField();
+        cbxOrderByMed = new javax.swing.JComboBox<>();
+        labelPesquisaAltLab1 = new javax.swing.JLabel();
+        btnAltMed = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jareaDescAltMed = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jtextTipoAltMed = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jtextQtndAltMed = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jtextValorVendaAltMed = new javax.swing.JTextField();
         telaCadLab = new javax.swing.JPanel();
         jtextBairroCadLab = new javax.swing.JTextField();
         labelCEPCadLab = new javax.swing.JLabel();
@@ -375,84 +411,140 @@ public class Main extends javax.swing.JFrame {
 
         mainPainel.add(telaVendas, "card2");
 
+        jLabel6.setText("CNPJ");
+
+        jLabel7.setText("Medicamentos");
+
+        jLabel8.setText("Quantidade");
+
+        jLabel9.setText("Forma de Pagamento");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cartão de Credito", "Cartão de Debito", "Dinheiro" }));
+
+        jLabel10.setText("Valor do Medicamento");
+
+        labelValMedicamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelValMedicamento.setText("jLabel11");
+
+        jLabel11.setText("Valor Total");
+
+        labelValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelValorTotal.setText("jLabel12");
+
+        jLabel12.setText("Data compra");
+
+        jLabel13.setText("Data Entrega");
+
+        jButton1.setText("Comprar");
+
         javax.swing.GroupLayout telaComprasLayout = new javax.swing.GroupLayout(telaCompras);
         telaCompras.setLayout(telaComprasLayout);
         telaComprasLayout.setHorizontalGroup(
             telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1173, Short.MAX_VALUE)
+            .addGroup(telaComprasLayout.createSequentialGroup()
+                .addGap(355, 355, 355)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(telaComprasLayout.createSequentialGroup()
+                        .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelValMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(telaComprasLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(telaComprasLayout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(telaComprasLayout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
         telaComprasLayout.setVerticalGroup(
             telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGroup(telaComprasLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(16, 16, 16)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGap(16, 16, 16)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelValMedicamento)
+                    .addComponent(labelValorTotal))
+                .addGap(32, 32, 32)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addGap(16, 16, 16)
+                .addGroup(telaComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
         mainPainel.add(telaCompras, "card2");
 
-        jtextCidadeCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtextValCusCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtextCidadeCadLab1KeyPressed(evt);
+                jtextValCusCadMedKeyPressed(evt);
             }
         });
 
-        cbxEstadoCadLab1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        cbxEstadoCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cbxEstadoCadLab1KeyPressed(evt);
-            }
-        });
+        labelValCusCadMed.setText("Valor custo*");
 
-        try {
-            jformInsEstCadLab1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###.###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jformInsEstCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtextValVenCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jformInsEstCadLab1KeyPressed(evt);
-            }
-        });
-
-        labelCidadeCadLab1.setText("Cidade*");
-
-        jtextBairroCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtextBairroCadLab1KeyPressed(evt);
+                jtextValVenCadMedKeyPressed(evt);
             }
         });
 
         labelDescCadMed.setText("Descrição*");
 
-        jtextRuaCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtextRuaCadLab1KeyPressed(evt);
-            }
-        });
-
-        labelBairroCadLab1.setText("Bairro*");
-
-        labelRuaCadLab1.setText("Rua*");
+        labelValVenCadMed.setText("Valor venda*");
 
         labelTipoCadMed.setText("Tipo*");
 
-        jtextComplementoCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtextQtndCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtextComplementoCadLab1KeyPressed(evt);
-            }
-        });
-
-        jtextNumCadLab1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtextNumCadLab1KeyPressed(evt);
+                jtextQtndCadMedKeyPressed(evt);
             }
         });
 
         labelNomeCadMed.setText("Nome*");
 
-        labelNumCadLab1.setText("Número*");
+        labelDataUltCompCadMed.setText("Data da Ultima Compra*");
 
-        labelCompCadLab1.setText("Complemento");
-
-        labelEstadoCadDLab1.setText("Estado*");
+        labelQtndCadMed.setText("Quantidade*");
 
         jtextNomeCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -460,68 +552,80 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        btnCadDrog2.setText("Cadastrar");
-        btnCadDrog2.addActionListener(new java.awt.event.ActionListener() {
+        btnCadMed.setText("Cadastrar");
+        btnCadMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadDrog2ActionPerformed(evt);
+                btnCadMedActionPerformed(evt);
             }
         });
 
-        labelInsEstCadLab1.setText("Inscrição Estadual");
+        jtextTipoCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtextTipoCadMedKeyPressed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jareaDescCadMed.setColumns(20);
+        jareaDescCadMed.setRows(5);
+        jareaDescCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jareaDescCadMedKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jareaDescCadMed);
+
+        try {
+            jformDataUltComCadMed.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jformDataUltComCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jformDataUltComCadMedKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout telaCadMedLayout = new javax.swing.GroupLayout(telaCadMed);
         telaCadMed.setLayout(telaCadMedLayout);
         telaCadMedLayout.setHorizontalGroup(
             telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(telaCadMedLayout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(labelDescCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtextNomeCadMed)
-                    .addComponent(labelNomeCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
                 .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaCadMedLayout.createSequentialGroup()
-                            .addComponent(labelTipoCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(549, 549, 549))
-                        .addGroup(telaCadMedLayout.createSequentialGroup()
-                            .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labelCidadeCadLab1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                .addComponent(jtextCidadeCadLab1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                .addComponent(jtextTipoCadMed))
-                            .addGap(18, 18, 18)
-                            .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelBairroCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jtextBairroCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(306, 306, 306)))
                     .addGroup(telaCadMedLayout.createSequentialGroup()
+                        .addGap(374, 374, 374)
+                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtextNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelTipoCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtextTipoCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
+                    .addGroup(telaCadMedLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(labelDescCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
                         .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadDrog2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(telaCadMedLayout.createSequentialGroup()
-                                .addComponent(jtextNumCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                    .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jtextComplementoCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(telaCadMedLayout.createSequentialGroup()
-                                .addComponent(labelNumCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelDataUltCompCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(labelCompCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(229, 229, 229))))
-            .addGroup(telaCadMedLayout.createSequentialGroup()
-                .addGap(252, 252, 252)
-                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jformInsEstCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelInsEstCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtextRuaCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelRuaCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxEstadoCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEstadoCadDLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(labelQtndCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(telaCadMedLayout.createSequentialGroup()
+                                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jformDataUltComCadMed)
+                                    .addComponent(btnCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jtextQtndCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         telaCadMedLayout.setVerticalGroup(
             telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,61 +635,223 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(labelNomeCadMed)
                     .addComponent(labelTipoCadMed))
                 .addGap(18, 18, 18)
-                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtextNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtextTipoCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtextTipoCadMed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtextNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelCidadeCadLab1)
-                        .addComponent(labelBairroCadLab1))
+                        .addComponent(labelValCusCadMed)
+                        .addComponent(labelValVenCadMed))
                     .addComponent(labelDescCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(telaCadMedLayout.createSequentialGroup()
                         .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtextCidadeCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtextBairroCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNumCadLab1)
-                            .addComponent(labelCompCadLab1))
+                            .addComponent(labelDataUltCompCadMed)
+                            .addComponent(labelQtndCadMed))
                         .addGap(18, 18, 18)
                         .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtextNumCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtextComplementoCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtextQtndCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jformDataUltComCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(126, 126, 126)
-                .addComponent(btnCadDrog2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(labelEstadoCadDLab1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxEstadoCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelRuaCadLab1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtextRuaCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelInsEstCadLab1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jformInsEstCadLab1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(btnCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(315, Short.MAX_VALUE))
         );
 
         mainPainel.add(telaCadMed, "Cadastrar Medicamentos");
+
+        tblMed.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMedMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblMed);
+
+        labelNomeAltLab1.setText("Nome");
+
+        labelIDAltLab1.setText("CODIGO");
+
+        groupbrnAltDrog.add(radioCresAltMed);
+        radioCresAltMed.setText("Cresente");
+        radioCresAltMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioCresAltMedActionPerformed(evt);
+            }
+        });
+
+        jtextIDAltMed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtextIDAltMedKeyReleased(evt);
+            }
+        });
+
+        groupbrnAltDrog.add(radioDescAltMed);
+        radioDescAltMed.setText("Decrescente");
+        radioDescAltMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDescAltMedActionPerformed(evt);
+            }
+        });
+
+        labelOrderByMed.setText("Ordem");
+
+        jtextNomeAltMed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtextNomeAltMedKeyReleased(evt);
+            }
+        });
+
+        cbxOrderByMed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome" }));
+        cbxOrderByMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxOrderByMedActionPerformed(evt);
+            }
+        });
+
+        labelPesquisaAltLab1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelPesquisaAltLab1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPesquisaAltLab1.setText("Pesquisa");
+
+        btnAltMed.setText("Alterar");
+        btnAltMed.setEnabled(false);
+        btnAltMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltMedActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Descrição");
+
+        jareaDescAltMed.setColumns(20);
+        jareaDescAltMed.setRows(5);
+        jScrollPane6.setViewportView(jareaDescAltMed);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Tipo");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Quantidade");
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Valor Venda");
 
         javax.swing.GroupLayout telaAltMedLayout = new javax.swing.GroupLayout(telaAltMed);
         telaAltMed.setLayout(telaAltMedLayout);
         telaAltMedLayout.setHorizontalGroup(
             telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1173, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaAltMedLayout.createSequentialGroup()
+                .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(telaAltMedLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelPesquisaAltLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(telaAltMedLayout.createSequentialGroup()
+                                    .addComponent(labelIDAltLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jtextIDAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addComponent(labelNomeAltLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtextNomeAltMed))
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioDescAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(radioCresAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbxOrderByMed, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelOrderByMed, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6)
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addComponent(jtextTipoAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtextQtndAltMed))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtextValorVendaAltMed))
+                        .addGap(82, 82, 82))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, telaAltMedLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(btnAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         telaAltMedLayout.setVerticalGroup(
             telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGroup(telaAltMedLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(telaAltMedLayout.createSequentialGroup()
+                        .addComponent(labelPesquisaAltLab1)
+                        .addGap(14, 14, 14)
+                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(labelIDAltLab1))
+                            .addComponent(jtextIDAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(labelNomeAltLab1))
+                            .addComponent(jtextNomeAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(telaAltMedLayout.createSequentialGroup()
+                                .addComponent(radioCresAltMed)
+                                .addGap(7, 7, 7)
+                                .addComponent(radioDescAltMed))
+                            .addComponent(labelOrderByMed, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaAltMedLayout.createSequentialGroup()
+                                .addComponent(cbxOrderByMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtextTipoAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtextQtndAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtextValorVendaAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAltMed)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        mainPainel.add(telaAltMed, "card2");
+        mainPainel.add(telaAltMed, "Alterar Medicamentos");
 
         jtextBairroCadLab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2591,41 +2857,103 @@ public class Main extends javax.swing.JFrame {
         tela("Alterar Laboratórios");
     }//GEN-LAST:event_itemAltLabActionPerformed
 
-    private void jtextCidadeCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextCidadeCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtextCidadeCadLab1KeyPressed
+    private void jtextValCusCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextValCusCadMedKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jtextValVenCadMed.requestFocus();
+        }
+    }//GEN-LAST:event_jtextValCusCadMedKeyPressed
 
-    private void cbxEstadoCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbxEstadoCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxEstadoCadLab1KeyPressed
+    private void jtextValVenCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextValVenCadMedKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jformDataUltComCadMed.requestFocus();
+        }
+    }//GEN-LAST:event_jtextValVenCadMedKeyPressed
 
-    private void jformInsEstCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jformInsEstCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jformInsEstCadLab1KeyPressed
-
-    private void jtextBairroCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextBairroCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtextBairroCadLab1KeyPressed
-
-    private void jtextRuaCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextRuaCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtextRuaCadLab1KeyPressed
-
-    private void jtextComplementoCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextComplementoCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtextComplementoCadLab1KeyPressed
-
-    private void jtextNumCadLab1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextNumCadLab1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtextNumCadLab1KeyPressed
+    private void jtextQtndCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextQtndCadMedKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cadastrarMed();
+        }
+    }//GEN-LAST:event_jtextQtndCadMedKeyPressed
 
     private void jtextNomeCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextNomeCadMedKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jtextTipoCadMed.requestFocus();
+        }
     }//GEN-LAST:event_jtextNomeCadMedKeyPressed
 
-    private void btnCadDrog2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadDrog2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadDrog2ActionPerformed
+    private void btnCadMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMedActionPerformed
+        cadastrarMed();
+    }//GEN-LAST:event_btnCadMedActionPerformed
+
+    private void jtextTipoCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextTipoCadMedKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jareaDescCadMed.requestFocus();
+        }
+    }//GEN-LAST:event_jtextTipoCadMedKeyPressed
+
+    private void jareaDescCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jareaDescCadMedKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jtextValCusCadMed.requestFocus();
+        }
+    }//GEN-LAST:event_jareaDescCadMedKeyPressed
+
+    private void jformDataUltComCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jformDataUltComCadMedKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (isValidDate(jformDataUltComCadMed.getText()) != null) {
+                jtextQtndCadMed.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jformDataUltComCadMedKeyPressed
+
+    private void radioCresAltMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCresAltMedActionPerformed
+        tableAltMed();
+        btnAltMed.setEnabled(false);
+    }//GEN-LAST:event_radioCresAltMedActionPerformed
+
+    private void jtextIDAltMedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextIDAltMedKeyReleased
+        tableAltMed();
+        btnAltMed.setEnabled(false);
+    }//GEN-LAST:event_jtextIDAltMedKeyReleased
+
+    private void radioDescAltMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDescAltMedActionPerformed
+        tableAltMed();
+        btnAltMed.setEnabled(false);
+    }//GEN-LAST:event_radioDescAltMedActionPerformed
+
+    private void jtextNomeAltMedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextNomeAltMedKeyReleased
+        tableAltMed();
+        btnAltMed.setEnabled(false);
+    }//GEN-LAST:event_jtextNomeAltMedKeyReleased
+
+    private void cbxOrderByMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOrderByMedActionPerformed
+        tableAltMed();
+        btnAltMed.setEnabled(false);
+    }//GEN-LAST:event_cbxOrderByMedActionPerformed
+
+    private void btnAltMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltMedActionPerformed
+        alterarMed();
+    }//GEN-LAST:event_btnAltMedActionPerformed
+
+    private void tblMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedMouseClicked
+        if (tblMed.getSelectedRow() != -1) {
+
+            m.setCodMed((String) MTM.getValueAt(tblMed.getSelectedRow(), 0));
+
+            MedicamentosDao md = new MedicamentosDao();
+            m = md.Verifica(m);
+            MTM.removeall();
+            MTM.addLinha(m);
+
+            jareaDescAltMed.setText(m.getDescrição());
+            jtextTipoAltMed.setText(m.getTipo());
+            jtextQtndAltMed.setText(m.getQuantidade());
+            if (jtextValorVendaAltMed.isEditable()) {
+                jtextValorVendaAltMed.setText(m.getValorVenda());
+            }
+            
+            btnAltMed.setEnabled(true);
+        }
+    }//GEN-LAST:event_tblMedMouseClicked
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2668,9 +2996,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnAltAtivar;
     private javax.swing.JButton btnAltAtivarLab;
     private javax.swing.JButton btnAltLab;
+    private javax.swing.JButton btnAltMed;
     private javax.swing.JButton btnCadDrog;
     private javax.swing.JButton btnCadDrog1;
-    private javax.swing.JButton btnCadDrog2;
+    private javax.swing.JButton btnCadMed;
     private javax.swing.JButton btnCadUser;
     private javax.swing.JButton btnDelDelUser;
     private javax.swing.JButton btnEntrarLogin;
@@ -2679,10 +3008,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxEstadoAltLab;
     private javax.swing.JComboBox<String> cbxEstadoCadDrog;
     private javax.swing.JComboBox<String> cbxEstadoCadLab;
-    private javax.swing.JComboBox<String> cbxEstadoCadLab1;
     private javax.swing.JComboBox<String> cbxOrderByAltDrog;
     private javax.swing.JComboBox<String> cbxOrderByAltLab;
     private javax.swing.JComboBox<String> cbxOrderByDelUser;
+    private javax.swing.JComboBox<String> cbxOrderByMed;
     private javax.swing.JComboBox<String> cbxStatusAltDrog;
     private javax.swing.JComboBox<String> cbxStatusAltLab;
     private javax.swing.JComboBox<String> cbxTipoUserCadUser;
@@ -2696,47 +3025,68 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadLab;
     private javax.swing.JMenuItem itemCadMed;
     private javax.swing.JMenuItem itemDelFun;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFormattedTextField jFormDateCadUser;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextArea jareaDescAltMed;
+    private javax.swing.JTextArea jareaDescCadMed;
     private javax.swing.JFormattedTextField jformCEPAltDrog;
     private javax.swing.JFormattedTextField jformCEPAltLab;
     private javax.swing.JFormattedTextField jformCEPCadDrog;
     private javax.swing.JFormattedTextField jformCEPCadLab;
     private javax.swing.JFormattedTextField jformCNPJCadDrog;
     private javax.swing.JFormattedTextField jformCNPJCadLab;
+    private javax.swing.JFormattedTextField jformDataUltComCadMed;
     private javax.swing.JFormattedTextField jformInsEstCadLab;
-    private javax.swing.JFormattedTextField jformInsEstCadLab1;
     private javax.swing.JPasswordField jpassSenhaLogin;
     private javax.swing.JTextField jtextBairroAltDrog;
     private javax.swing.JTextField jtextBairroAltLab;
     private javax.swing.JTextField jtextBairroCadDrog;
     private javax.swing.JTextField jtextBairroCadLab;
-    private javax.swing.JTextField jtextBairroCadLab1;
     private javax.swing.JTextField jtextCNPJAltDrog;
     private javax.swing.JTextField jtextCNPJAltLab;
     private javax.swing.JTextField jtextCidadeAltDrog;
     private javax.swing.JTextField jtextCidadeAltLab;
     private javax.swing.JTextField jtextCidadeCadDrog;
     private javax.swing.JTextField jtextCidadeCadLab;
-    private javax.swing.JTextField jtextCidadeCadLab1;
     private javax.swing.JTextField jtextComplementoAltDrog;
     private javax.swing.JTextField jtextComplementoAltLab;
     private javax.swing.JTextField jtextComplementoCadDrog;
     private javax.swing.JTextField jtextComplementoCadLab;
-    private javax.swing.JTextField jtextComplementoCadLab1;
     private javax.swing.JTextField jtextEmailCadUser;
     private javax.swing.JTextField jtextEmailDelUser;
     private javax.swing.JTextField jtextIDAltDrog;
     private javax.swing.JTextField jtextIDAltLab;
+    private javax.swing.JTextField jtextIDAltMed;
     private javax.swing.JTextField jtextInsEstAltLab;
     private javax.swing.JTextField jtextLoginCadUser;
     private javax.swing.JTextField jtextNomeAltDrog;
     private javax.swing.JTextField jtextNomeAltLab;
+    private javax.swing.JTextField jtextNomeAltMed;
     private javax.swing.JTextField jtextNomeCadDrog;
     private javax.swing.JTextField jtextNomeCadLab;
     private javax.swing.JTextField jtextNomeCadMed;
@@ -2745,23 +3095,26 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jtextNumAltLab;
     private javax.swing.JTextField jtextNumCadDrog;
     private javax.swing.JTextField jtextNumCadLab;
-    private javax.swing.JTextField jtextNumCadLab1;
+    private javax.swing.JTextField jtextQtndAltMed;
+    private javax.swing.JTextField jtextQtndCadMed;
     private javax.swing.JTextField jtextRuaAltDrog;
     private javax.swing.JTextField jtextRuaAltLab;
     private javax.swing.JTextField jtextRuaCadDrog;
     private javax.swing.JTextField jtextRuaCadLab;
-    private javax.swing.JTextField jtextRuaCadLab1;
     private javax.swing.JTextField jtextSenhaCadUser;
     private javax.swing.JTextField jtextTelAltCadUser;
     private javax.swing.JTextField jtextTelCelCadUser;
     private javax.swing.JTextField jtextTelResCadUser;
+    private javax.swing.JTextField jtextTipoAltMed;
     private javax.swing.JTextField jtextTipoCadMed;
     private javax.swing.JTextField jtextUserDelUser;
     private javax.swing.JTextField jtextUserLog;
+    private javax.swing.JTextField jtextValCusCadMed;
+    private javax.swing.JTextField jtextValVenCadMed;
+    private javax.swing.JTextField jtextValorVendaAltMed;
     private javax.swing.JLabel labelBairroAltDrog;
     private javax.swing.JLabel labelBairroAltLab;
     private javax.swing.JLabel labelBairroCadLab;
-    private javax.swing.JLabel labelBairroCadLab1;
     private javax.swing.JLabel labelBemVindo;
     private javax.swing.JLabel labelCEPAltLab;
     private javax.swing.JLabel labelCEPCadLab;
@@ -2773,11 +3126,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelCidadeAltDrog;
     private javax.swing.JLabel labelCidadeAltLab;
     private javax.swing.JLabel labelCidadeCadLab;
-    private javax.swing.JLabel labelCidadeCadLab1;
     private javax.swing.JLabel labelCompAltDrog;
     private javax.swing.JLabel labelCompAltLab;
     private javax.swing.JLabel labelCompCadLab;
-    private javax.swing.JLabel labelCompCadLab1;
+    private javax.swing.JLabel labelDataUltCompCadMed;
     private javax.swing.JLabel labelDateCadUser;
     private javax.swing.JLabel labelDescCadMed;
     private javax.swing.JLabel labelEmailCadUser;
@@ -2785,16 +3137,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelEstadoAltDrog;
     private javax.swing.JLabel labelEstadoAltLab;
     private javax.swing.JLabel labelEstadoCadDLab;
-    private javax.swing.JLabel labelEstadoCadDLab1;
     private javax.swing.JLabel labelIDAltDrog;
     private javax.swing.JLabel labelIDAltLab;
+    private javax.swing.JLabel labelIDAltLab1;
     private javax.swing.JLabel labelInsEstAltLab;
     private javax.swing.JLabel labelInsEstCadLab;
-    private javax.swing.JLabel labelInsEstCadLab1;
     private javax.swing.JLabel labelLogDelUser;
     private javax.swing.JLabel labelLoginCadUser;
     private javax.swing.JLabel labelNomeAltDrog;
     private javax.swing.JLabel labelNomeAltLab;
+    private javax.swing.JLabel labelNomeAltLab1;
     private javax.swing.JLabel labelNomeCadDrog;
     private javax.swing.JLabel labelNomeCadDrog1;
     private javax.swing.JLabel labelNomeCadDrog2;
@@ -2809,15 +3161,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelNumAltDrog;
     private javax.swing.JLabel labelNumAltLab;
     private javax.swing.JLabel labelNumCadLab;
-    private javax.swing.JLabel labelNumCadLab1;
     private javax.swing.JLabel labelOrderBy;
     private javax.swing.JLabel labelOrderByLab;
+    private javax.swing.JLabel labelOrderByMed;
     private javax.swing.JLabel labelPesquisaAltDrog;
     private javax.swing.JLabel labelPesquisaAltLab;
+    private javax.swing.JLabel labelPesquisaAltLab1;
+    private javax.swing.JLabel labelQtndCadMed;
     private javax.swing.JLabel labelRuaAltDrog;
     private javax.swing.JLabel labelRuaAltLab;
     private javax.swing.JLabel labelRuaCadLab;
-    private javax.swing.JLabel labelRuaCadLab1;
     private javax.swing.JLabel labelSenhaCadUser;
     private javax.swing.JLabel labelSenhaLog;
     private javax.swing.JLabel labelStatusAltDrog;
@@ -2829,17 +3182,24 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelTipoCadUser;
     private javax.swing.JLabel labelTipolDelUser;
     private javax.swing.JLabel labelUserLog;
+    private javax.swing.JLabel labelValCusCadMed;
+    private javax.swing.JLabel labelValMedicamento;
+    private javax.swing.JLabel labelValVenCadMed;
+    private javax.swing.JLabel labelValorTotal;
     private javax.swing.JPanel mainPainel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JRadioButton radioCresAltDrog;
     private javax.swing.JRadioButton radioCresAltLab;
+    private javax.swing.JRadioButton radioCresAltMed;
     private javax.swing.JRadioButton radioCrescDelFun;
     private javax.swing.JRadioButton radioDescAltDrog;
     private javax.swing.JRadioButton radioDescAltLab;
+    private javax.swing.JRadioButton radioDescAltMed;
     private javax.swing.JRadioButton radioDescDelFun;
     private javax.swing.JTable tblAltDrog;
     private javax.swing.JTable tblAltLab;
     private javax.swing.JTable tblDelUser;
+    private javax.swing.JTable tblMed;
     private javax.swing.JPanel telaAltDrog;
     private javax.swing.JPanel telaAltLab;
     private javax.swing.JPanel telaAltMed;
@@ -2864,11 +3224,13 @@ public class Main extends javax.swing.JFrame {
             case "Login" ->
                 menuBar.setVisible(false);
             case "Cadastrar Drogarias" ->
-                txtClearCadDrog();
+                clearTxt();
             case "Alterar Drogarias" ->
                 radioCresAltDrog.setSelected(true);
-            case "Cadastra Medicamentos" ->
-                jTextArea1.setLineWrap(true);
+            case "Cadastrar Medicamentos" ->
+                jareaDescCadMed.setLineWrap(true);
+            case "Alterar Medicamentos" ->
+                jareaDescAltMed.setLineWrap(true);
         }
     }
 
@@ -2908,15 +3270,18 @@ public class Main extends javax.swing.JFrame {
         tblAltLab.getColumnModel().getColumn(8).setPreferredWidth(50);
         tblAltLab.getColumnModel().getColumn(9).setPreferredWidth(50);
         tblAltLab.getColumnModel().getColumn(10).setPreferredWidth(150);
+
+        tblMed.setModel(MTM);
     }
 
     private void clearTxt() {
-        txtClearLogin();
+        txtLoginClear();
         txtCadFunClear();
+        txtClearCadDrog();
     }
 
     public void configPage() {
-        ImageIcon icon = new ImageIcon("C:\\Users\\ivan2\\Desktop\\Logo.png");
+        ImageIcon icon = new ImageIcon("");
         this.setIconImage(icon.getImage());
         Dimension tamanhoTela = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(tamanhoTela);
@@ -2961,7 +3326,39 @@ public class Main extends javax.swing.JFrame {
         jtextRuaCadDrog.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.LOGIN));
         jtextComplementoCadDrog.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.DESCRICAO));
         jtextNumCadDrog.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
-
+        //Tela Alteração de Drogaria
+        jtextIDAltDrog.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
+        jtextCNPJAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.CNPJ));
+        jtextNomeAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.NOME));
+        jtextComplementoAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextRuaAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextNumAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
+        jtextCidadeAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.NOME));
+        jtextBairroAltDrog.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.NOME));
+        //Tela Cadastro de Laboratorio
+        jtextNomeCadLab.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        jtextCidadeCadLab.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.NOME));
+        jtextBairroCadLab.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        jtextRuaCadLab.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextNumCadLab.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
+        jtextComplementoCadLab.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        //Tela Alteração de Laboratorio
+        jtextIDAltLab.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
+        jtextCNPJAltLab.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.CNPJ));
+        jtextNomeAltLab.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        jtextInsEstAltLab.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
+        jtextComplementoAltLab.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextRuaAltLab.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextNumAltLab.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
+        jtextCidadeAltLab.setDocument(new LimitaCaracteres(30, LimitaCaracteres.TipoEntrada.NOME));
+        jtextBairroAltLab.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        //Tela Cadastro de Medicamentos
+        jtextNomeCadMed.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        jtextTipoCadMed.setDocument(new LimitaCaracteres(80, LimitaCaracteres.TipoEntrada.NOME));
+        jareaDescCadMed.setDocument(new LimitaCaracteres(250, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextValCusCadMed.setDocument(new LimitaCaracteres(6, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
+        jtextValVenCadMed.setDocument(new LimitaCaracteres(6, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
+        jtextQtndCadMed.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
     }
 //</editor-fold>
 
@@ -2971,21 +3368,24 @@ public class Main extends javax.swing.JFrame {
         String a = fd.verifica(txtLogin());
         if (null == a) {
             jtextUserLog.requestFocus();
-            txtClearLogin();
+            txtLoginClear();
         } else {
             switch (a) {
                 case "Administrador" -> {
                     tela("Home");
-                    labelBemVindo.setText(fd.verificaUser().toString());
+                    labelBemVindo.setText(fd.Verifica(txtLogin()).getNome().toUpperCase());
                     menuBar.setVisible(true);
                     barUser.setVisible(true);
+                    jtextValorVendaAltMed.setEditable(true);
                 }
                 case "Funcionario" -> {
                     tela("Home");
-                    labelBemVindo.setText(fd.verificaUser().toString());
+                    labelBemVindo.setText(fd.Verifica(txtLogin()).getNome().toUpperCase());
                     menuBar.setVisible(true);
                     barUser.setVisible(false);
+                    jtextValorVendaAltMed.setEditable(false);
                 }
+
             }
         }
     }
@@ -2997,7 +3397,7 @@ public class Main extends javax.swing.JFrame {
         return f;
     }
 
-    private void txtClearLogin() {
+    private void txtLoginClear() {
         jtextUserLog.setText(null);
         jpassSenhaLogin.setText(null);
     }
@@ -3138,7 +3538,7 @@ public class Main extends javax.swing.JFrame {
         d.setStatus("1");
         if (isCampValidCadDrog(d)) {
             dd.adicionar(d);
-            txtClearCadDrog();
+            clearTxt();
         } else {
             JOptionPane.showMessageDialog(null, "Há Campos para preencher");
         }
@@ -3501,6 +3901,135 @@ public class Main extends javax.swing.JFrame {
             btnAltAtivarLab.setEnabled(false);
         }
     }
+//</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Tela Cadastro de Medicamentos">
+    private void cadastrarMed() {
+        if (isCamposValidMed()) {
+            MedicamentosDao md = new MedicamentosDao();
+            if (md.adicionar(txtCadMed())) {
+                txtCadMedClear();
+                jtextNomeCadMed.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos invalidos");
+        }
+    }
+
+    private boolean isCamposValidMed() {
+        if (jtextNomeCadMed.getText().equals("")) {
+            jtextNomeCadMed.requestFocus();
+            return false;
+        } else if (jtextTipoCadMed.getText().equals("")) {
+            jtextTipoCadMed.requestFocus();
+            return false;
+        } else if (jtextValCusCadMed.getText().equals("")) {
+            jtextValCusCadMed.requestFocus();
+            return false;
+        } else if (jtextValVenCadMed.getText().equals("")) {
+            jtextValVenCadMed.requestFocus();
+            return false;
+        } else if (jtextQtndCadMed.getText().equals("")) {
+            jtextQtndCadMed.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private Medicamentos txtCadMed() {
+        Medicamentos m = new Medicamentos();
+
+        m.setNomeMed(jtextNomeCadMed.getText());
+        m.setTipo(jtextTipoCadMed.getText());
+        m.setDescrição(jareaDescCadMed.getText());
+        m.setValorCusto(jtextValCusCadMed.getText());
+        m.setValorVenda(jtextValVenCadMed.getText());
+        m.setDataUltCompra(isValidDate(jformDataUltComCadMed.getText()));
+        m.setQuantidade(jtextQtndCadMed.getText());
+
+        return m;
+    }
+
+    private void txtCadMedClear() {
+        jtextNomeCadMed.setText(null);
+        jtextTipoCadMed.setText(null);
+        jareaDescCadMed.setText("");
+        jtextValCusCadMed.setText(null);
+        jtextValVenCadMed.setText(null);
+        jformDataUltComCadMed.setText(null);
+        jtextQtndCadMed.setText(null);
+    }
+//</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Tela Alteração de Medicamentos">
+    private void tableAltMed() {
+        MedicamentosDao md = new MedicamentosDao();
+        String desc;
+        String order = "";
+        switch ((String) cbxOrderByMed.getSelectedItem()) {
+            
+            case "ID" ->
+                order = "Cod_Med";
+            case "" ->
+                order = "";
+            case "Nome" ->
+                order = "Nome_Med";
+                /*case "" ->
+                order = "";*/
+        }
+        if (radioCresAltMed.isSelected()) {
+            desc = "";
+        } else {
+            desc = "Desc";
+        }
+        MTM.addList(md.VerificaLike(txtAltMedPesquisa(),
+                jtextIDAltMed.getText(),
+                jtextNomeAltMed.getText(),
+                order, desc));
+        
+    }
+    
+    private Medicamentos txtAltMedPesquisa() {
+        m.setCodMed(jtextIDAltMed.getText());
+        m.setNomeMed(jtextNomeAltMed.getText());
+        return m;
+    }
+    
+    private void alterarMed(){
+        MedicamentosDao md = new MedicamentosDao();
+        if (md.update(txtAltMed())) {
+            MTM.removeall();
+            MTM.addLinha(md.Verifica(m));
+            btnAltMed.setEnabled(false);
+            txtClearMed();
+        }
+    }
+    
+    private Medicamentos txtAltMed(){
+        m.setDescrição(jareaDescAltMed.getText());
+        m.setTipo(jtextTipoAltMed.getText());
+        m.setQuantidade(jtextQtndAltMed.getText());
+        m.setValorVenda(jtextValorVendaAltMed.getText());
+        
+        return m;
+    }
+    
+    private void txtClearMed(){
+        jareaDescAltMed.setText(null);
+        jtextTipoAltMed.setText(null);
+        jtextQtndAltMed.setText(null);
+        jtextValorVendaAltMed.setText(null);
+        jtextIDAltMed.setText(null);
+        jtextNomeAltMed.setText(null);
+        cbxOrderByMed.setSelectedIndex(0);
+    }
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Tela Compra">
+    private void comboboxCNPJ(){
+        
+    }
+    
 //</editor-fold>
 
 }
