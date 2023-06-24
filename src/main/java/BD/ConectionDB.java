@@ -67,6 +67,8 @@ public class ConectionDB {//Classe
     public boolean inserir(String query) {
         try {
             s.execute(query);
+            closeConnection(s);
+            closeConnection(c);
             return true;
         } catch (SQLException e) {
             System.out.println(e.getLocalizedMessage() + "\n" + e.getMessage());
