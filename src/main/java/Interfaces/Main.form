@@ -772,10 +772,8 @@
                                   <Component id="jtextTipoCadMed" max="32767" attributes="0"/>
                                   <Component id="labelValVenCadMed" min="-2" pref="225" max="-2" attributes="0"/>
                                   <Component id="jtextValVenCadMed" min="-2" pref="225" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="labelValCusCadMed" max="32767" attributes="0"/>
-                                      <Component id="jtextValCusCadMed" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="labelValCusCadMed" max="32767" attributes="0"/>
+                                  <Component id="jtextValCusCadMed" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

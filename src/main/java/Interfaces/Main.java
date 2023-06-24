@@ -4529,6 +4529,7 @@ public class Main extends javax.swing.JFrame {
     }
 
 //</editor-fold>
+
     //<editor-fold defaultstate="collapsed" desc="Tela Compra">
     private void comboboxCNPJVen() {
         cbxCnpjVen.removeAllItems();
