@@ -8,6 +8,7 @@ import BD.DrogariasDao;
 import BD.FuncionariosDao;
 import BD.LaboratoriosDao;
 import BD.MedicamentosDao;
+import BD.VendasDao;
 import ModelTables.DrogariasTableModel;
 import ModelTables.FuncionariosTableModel;
 import ModelTables.LaboratoriosTableModel;
@@ -17,6 +18,7 @@ import Objs.Drogarias;
 import Objs.Funcionarios;
 import Objs.Laboratorios;
 import Objs.Medicamentos;
+import Objs.Vendas;
 import com.melloware.jintellitype.JIntellitype;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -115,6 +117,25 @@ public class Main extends javax.swing.JFrame {
         jpassSenhaLogin = new javax.swing.JPasswordField();
         labelUserLog = new javax.swing.JLabel();
         telaVendas = new javax.swing.JPanel();
+        labelValMedicamentoVen = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cbxCnpjVen = new javax.swing.JComboBox<>();
+        labelValorTotalVen = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        btnVender = new javax.swing.JButton();
+        cbxMedVen = new javax.swing.JComboBox<>();
+        jtextPesquisaCbxVen = new javax.swing.JTextField();
+        jtextQtnVen = new javax.swing.JTextField();
+        jtextPesquisaNomeVen = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jformDataVen = new javax.swing.JFormattedTextField();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jformDataEntregaVen = new javax.swing.JFormattedTextField();
+        jLabel21 = new javax.swing.JLabel();
         telaCompras = new javax.swing.JPanel();
         cbxCnpjComp = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -142,10 +163,7 @@ public class Main extends javax.swing.JFrame {
         labelDescCadMed = new javax.swing.JLabel();
         labelValVenCadMed = new javax.swing.JLabel();
         labelTipoCadMed = new javax.swing.JLabel();
-        jtextQtndCadMed = new javax.swing.JTextField();
         labelNomeCadMed = new javax.swing.JLabel();
-        labelDataUltCompCadMed = new javax.swing.JLabel();
-        labelQtndCadMed = new javax.swing.JLabel();
         jtextNomeCadMed = new javax.swing.JTextField();
         btnCadMed = new javax.swing.JButton();
         jtextTipoCadMed = new javax.swing.JTextField();
@@ -169,8 +187,6 @@ public class Main extends javax.swing.JFrame {
         jareaDescAltMed = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jtextTipoAltMed = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jtextQtndAltMed = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jtextValorVendaAltMed = new javax.swing.JTextField();
         telaCadLab = new javax.swing.JPanel();
@@ -402,19 +418,199 @@ public class Main extends javax.swing.JFrame {
 
         mainPainel.add(telaLogin, "Login");
 
+        labelValMedicamentoVen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel14.setText("Valor Total");
+
+        cbxCnpjVen.setEnabled(false);
+        cbxCnpjVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cbxCnpjVenKeyPressed(evt);
+            }
+        });
+
+        labelValorTotalVen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel15.setText("CNPJ");
+
+        jLabel16.setText("Data compra");
+
+        jLabel17.setText("Medicamentos");
+
+        jLabel18.setText("Data Entrega");
+
+        jLabel19.setText("Quantidade");
+
+        btnVender.setText("Vender");
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderActionPerformed(evt);
+            }
+        });
+
+        cbxMedVen.setEnabled(false);
+        cbxMedVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMedVenActionPerformed(evt);
+            }
+        });
+        cbxMedVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cbxMedVenKeyPressed(evt);
+            }
+        });
+
+        jtextPesquisaCbxVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtextPesquisaCbxVenKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtextPesquisaCbxVenKeyReleased(evt);
+            }
+        });
+
+        jtextQtnVen.setText("0");
+        jtextQtnVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtextQtnVenKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtextQtnVenKeyReleased(evt);
+            }
+        });
+
+        jtextPesquisaNomeVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtextPesquisaNomeVenKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtextPesquisaNomeVenKeyReleased(evt);
+            }
+        });
+
+        jLabel20.setText("Forma de Pagamento");
+
+        try {
+            jformDataVen.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jformDataVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jformDataVenKeyPressed(evt);
+            }
+        });
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cartão de Credito", "Cartão de Debito", "Dinheiro" }));
+        jComboBox4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBox4KeyPressed(evt);
+            }
+        });
+
+        try {
+            jformDataEntregaVen.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jformDataEntregaVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jformDataEntregaVenActionPerformed(evt);
+            }
+        });
+        jformDataEntregaVen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jformDataEntregaVenKeyPressed(evt);
+            }
+        });
+
+        jLabel21.setText("Valor do Medicamento");
+
         javax.swing.GroupLayout telaVendasLayout = new javax.swing.GroupLayout(telaVendas);
         telaVendas.setLayout(telaVendasLayout);
         telaVendasLayout.setHorizontalGroup(
             telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1173, Short.MAX_VALUE)
+            .addGroup(telaVendasLayout.createSequentialGroup()
+                .addGap(355, 355, 355)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(telaVendasLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jformDataVen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jformDataEntregaVen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(telaVendasLayout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(telaVendasLayout.createSequentialGroup()
+                        .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jtextPesquisaCbxVen, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.LEADING, 0, 150, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxCnpjVen, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnVender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxMedVen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(labelValMedicamentoVen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtextPesquisaNomeVen))
+                        .addGap(32, 32, 32)
+                        .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtextQtnVen)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelValorTotalVen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
         telaVendasLayout.setVerticalGroup(
             telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGroup(telaVendasLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel19))
+                .addGap(16, 16, 16)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtextPesquisaCbxVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtextPesquisaNomeVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxCnpjVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxMedVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtextQtnVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel14))
+                .addGap(16, 16, 16)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelValMedicamentoVen, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelValorTotalVen, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel18))
+                .addGap(16, 16, 16)
+                .addGroup(telaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jformDataVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jformDataEntregaVen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
-        mainPainel.add(telaVendas, "card2");
+        mainPainel.add(telaVendas, "Vendas");
 
+        cbxCnpjComp.setEnabled(false);
         cbxCnpjComp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cbxCnpjCompKeyPressed(evt);
@@ -427,6 +623,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel8.setText("Quantidade");
 
+        cbxMedCompra.setEnabled(false);
         cbxMedCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxMedCompraActionPerformed(evt);
@@ -625,17 +822,7 @@ public class Main extends javax.swing.JFrame {
 
         labelTipoCadMed.setText("Tipo*");
 
-        jtextQtndCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtextQtndCadMedKeyPressed(evt);
-            }
-        });
-
         labelNomeCadMed.setText("Nome*");
-
-        labelDataUltCompCadMed.setText("Data da Ultima Compra*");
-
-        labelQtndCadMed.setText("Quantidade*");
 
         jtextNomeCadMed.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -672,38 +859,26 @@ public class Main extends javax.swing.JFrame {
             .addGroup(telaCadMedLayout.createSequentialGroup()
                 .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(telaCadMedLayout.createSequentialGroup()
+                        .addGap(481, 481, 481)
+                        .addComponent(btnCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(telaCadMedLayout.createSequentialGroup()
                         .addGap(374, 374, 374)
                         .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane2)
+                                .addComponent(labelDescCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labelNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtextNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelTipoCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtextTipoCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
-                    .addGroup(telaCadMedLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2)
-                            .addComponent(labelDescCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(telaCadMedLayout.createSequentialGroup()
-                                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(labelValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                    .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(telaCadMedLayout.createSequentialGroup()
-                                .addComponent(labelDataUltCompCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelQtndCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(telaCadMedLayout.createSequentialGroup()
-                                .addComponent(btnCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtextQtndCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(306, Short.MAX_VALUE))
+                            .addComponent(jtextTipoCadMed)
+                            .addComponent(labelValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labelValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(404, Short.MAX_VALUE))
         );
         telaCadMedLayout.setVerticalGroup(
             telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,26 +893,20 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jtextNomeCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelValCusCadMed)
-                        .addComponent(labelValVenCadMed))
+                    .addComponent(labelValVenCadMed)
                     .addComponent(labelDescCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(telaCadMedLayout.createSequentialGroup()
-                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelDataUltCompCadMed)
-                            .addComponent(labelQtndCadMed))
+                        .addComponent(labelValCusCadMed)
                         .addGap(18, 18, 18)
-                        .addComponent(jtextQtndCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
 
         mainPainel.add(telaCadMed, "Cadastrar Medicamentos");
@@ -823,9 +992,6 @@ public class Main extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Tipo");
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Quantidade");
-
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Valor Venda");
 
@@ -858,16 +1024,10 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(labelOrderByMed, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane6)
-                            .addGroup(telaAltMedLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(telaAltMedLayout.createSequentialGroup()
-                                .addComponent(jtextTipoAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtextQtndAltMed))
+                            .addComponent(jtextTipoAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtextValorVendaAltMed))
+                            .addComponent(jtextValorVendaAltMed)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(82, 82, 82))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, telaAltMedLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
@@ -909,13 +1069,9 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(telaAltMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtextTipoAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtextQtndAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtextTipoAltMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2945,12 +3101,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtextValVenCadMedKeyPressed
 
-    private void jtextQtndCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextQtndCadMedKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cadastrarMed();
-        }
-    }//GEN-LAST:event_jtextQtndCadMedKeyPressed
-
     private void jtextNomeCadMedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextNomeCadMedKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             jtextTipoCadMed.requestFocus();
@@ -3022,7 +3172,6 @@ public class Main extends javax.swing.JFrame {
 
             jareaDescAltMed.setText(m.getDescrição());
             jtextTipoAltMed.setText(m.getTipo());
-            jtextQtndAltMed.setText(m.getQuantidade());
             if (jtextValorVendaAltMed.isEditable()) {
                 jtextValorVendaAltMed.setText(m.getValorVenda());
             }
@@ -3033,14 +3182,16 @@ public class Main extends javax.swing.JFrame {
 
     private void jtextPesquisaCbxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaCbxKeyReleased
         comboboxCNPJ();
+        cbxCnpjComp.setEnabled(true);
     }//GEN-LAST:event_jtextPesquisaCbxKeyReleased
 
     private void jtextPesquisaNomeCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaNomeCompraKeyReleased
         comboboxMed();
+        cbxMedCompra.setEnabled(true);
     }//GEN-LAST:event_jtextPesquisaNomeCompraKeyReleased
 
     private void cbxMedCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedCompraActionPerformed
-        if (cbxMedCompra.getItemCount() != 0) {
+        if (cbxMedCompra.isEnabled()) {
             Valor();
         }
     }//GEN-LAST:event_cbxMedCompraActionPerformed
@@ -3052,6 +3203,7 @@ public class Main extends javax.swing.JFrame {
     private void jtextPesquisaCbxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaCbxKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             comboboxCNPJ();
+            cbxCnpjComp.setEnabled(true);
             cbxCnpjComp.requestFocus();
         }
     }//GEN-LAST:event_jtextPesquisaCbxKeyPressed
@@ -3065,6 +3217,7 @@ public class Main extends javax.swing.JFrame {
     private void jtextPesquisaNomeCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaNomeCompraKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             comboboxMed();
+            cbxMedCompra.setEnabled(true);
             cbxMedCompra.requestFocus();
         }
     }//GEN-LAST:event_jtextPesquisaNomeCompraKeyPressed
@@ -3102,6 +3255,98 @@ public class Main extends javax.swing.JFrame {
     private void jformDataEntregaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jformDataEntregaCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jformDataEntregaCompraActionPerformed
+
+    private void cbxCnpjVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbxCnpjVenKeyPressed
+
+    }//GEN-LAST:event_cbxCnpjVenKeyPressed
+
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        Vender();
+    }//GEN-LAST:event_btnVenderActionPerformed
+
+    private void cbxMedVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedVenActionPerformed
+        if (cbxMedVen.isEnabled()) {
+            ValorVen();
+        }
+    }//GEN-LAST:event_cbxMedVenActionPerformed
+
+    private void cbxMedVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbxMedVenKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxMedVenKeyPressed
+
+    private void jtextPesquisaCbxVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaCbxVenKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            comboboxCNPJVen();
+            cbxCnpjVen.setEnabled(true);
+            cbxCnpjVen.requestFocus();
+        }
+    }//GEN-LAST:event_jtextPesquisaCbxVenKeyPressed
+
+    private void jtextPesquisaCbxVenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaCbxVenKeyReleased
+        comboboxCNPJVen();
+        cbxCnpjVen.setEnabled(true);
+    }//GEN-LAST:event_jtextPesquisaCbxVenKeyReleased
+
+    private void jtextQtnVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextQtnVenKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jComboBox4.requestFocus();
+            String[] a = cbxMedVen.getSelectedItem().toString().split(" - ");
+            String cod = a[0];
+            VendasDao vd = new VendasDao();
+            String qtnMax = vd.quantidade(cod);
+            System.out.println(qtnMax);
+            if (Integer.valueOf(qtnMax) < Integer.valueOf(jtextQtnVen.getText())) {
+                JOptionPane.showMessageDialog(null, "há " + qtnMax + " No estoque");
+                jtextQtnVen.requestFocus();
+            }
+
+        }
+    }//GEN-LAST:event_jtextQtnVenKeyPressed
+
+    private void jtextQtnVenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextQtnVenKeyReleased
+        if (cbxMedVen.isEnabled()) {
+            ValorVen();
+        }
+    }//GEN-LAST:event_jtextQtnVenKeyReleased
+
+    private void jtextPesquisaNomeVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaNomeVenKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            comboboxMedVen();
+            cbxMedVen.setEnabled(true);
+            cbxMedVen.requestFocus();
+        }
+    }//GEN-LAST:event_jtextPesquisaNomeVenKeyPressed
+
+    private void jtextPesquisaNomeVenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtextPesquisaNomeVenKeyReleased
+        comboboxMed();
+        cbxMedCompra.setEnabled(true);
+    }//GEN-LAST:event_jtextPesquisaNomeVenKeyReleased
+
+    private void jformDataVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jformDataVenKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (isValidDate(jformDataVen.getText()) != null) {
+                jformDataEntregaVen.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jformDataVenKeyPressed
+
+    private void jComboBox4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox4KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jformDataVen.requestFocus();
+        }
+    }//GEN-LAST:event_jComboBox4KeyPressed
+
+    private void jformDataEntregaVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jformDataEntregaVenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jformDataEntregaVenActionPerformed
+
+    private void jformDataEntregaVenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jformDataEntregaVenKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (isValidDate(jformDataEntregaVen.getText()) != null) {
+                Vender();
+            }
+        }
+    }//GEN-LAST:event_jformDataEntregaVenKeyPressed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3153,12 +3398,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnDelDelUser;
     private javax.swing.JButton btnEntrarLogin;
     private javax.swing.JButton btnPesquisaDelUser;
+    private javax.swing.JButton btnVender;
     private javax.swing.JComboBox<String> cbxCnpjComp;
+    private javax.swing.JComboBox<String> cbxCnpjVen;
     private javax.swing.JComboBox<String> cbxEstadoAltDrog;
     private javax.swing.JComboBox<String> cbxEstadoAltLab;
     private javax.swing.JComboBox<String> cbxEstadoCadDrog;
     private javax.swing.JComboBox<String> cbxEstadoCadLab;
     private javax.swing.JComboBox<String> cbxMedCompra;
+    private javax.swing.JComboBox<String> cbxMedVen;
     private javax.swing.JComboBox<String> cbxOrderByAltDrog;
     private javax.swing.JComboBox<String> cbxOrderByAltLab;
     private javax.swing.JComboBox<String> cbxOrderByDelUser;
@@ -3177,15 +3425,23 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadMed;
     private javax.swing.JMenuItem itemDelFun;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JFormattedTextField jFormDateCadUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -3207,6 +3463,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jformCNPJCadLab;
     private javax.swing.JFormattedTextField jformDataCompra;
     private javax.swing.JFormattedTextField jformDataEntregaCompra;
+    private javax.swing.JFormattedTextField jformDataEntregaVen;
+    private javax.swing.JFormattedTextField jformDataVen;
     private javax.swing.JFormattedTextField jformInsEstCadLab;
     private javax.swing.JPasswordField jpassSenhaLogin;
     private javax.swing.JTextField jtextBairroAltDrog;
@@ -3242,10 +3500,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jtextNumCadDrog;
     private javax.swing.JTextField jtextNumCadLab;
     private javax.swing.JTextField jtextPesquisaCbx;
+    private javax.swing.JTextField jtextPesquisaCbxVen;
     private javax.swing.JTextField jtextPesquisaNomeCompra;
+    private javax.swing.JTextField jtextPesquisaNomeVen;
     private javax.swing.JTextField jtextQtnCompra;
-    private javax.swing.JTextField jtextQtndAltMed;
-    private javax.swing.JTextField jtextQtndCadMed;
+    private javax.swing.JTextField jtextQtnVen;
     private javax.swing.JTextField jtextRuaAltDrog;
     private javax.swing.JTextField jtextRuaAltLab;
     private javax.swing.JTextField jtextRuaCadDrog;
@@ -3278,7 +3537,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelCompAltDrog;
     private javax.swing.JLabel labelCompAltLab;
     private javax.swing.JLabel labelCompCadLab;
-    private javax.swing.JLabel labelDataUltCompCadMed;
     private javax.swing.JLabel labelDateCadUser;
     private javax.swing.JLabel labelDescCadMed;
     private javax.swing.JLabel labelEmailCadUser;
@@ -3316,7 +3574,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelPesquisaAltDrog;
     private javax.swing.JLabel labelPesquisaAltLab;
     private javax.swing.JLabel labelPesquisaAltLab1;
-    private javax.swing.JLabel labelQtndCadMed;
     private javax.swing.JLabel labelRuaAltDrog;
     private javax.swing.JLabel labelRuaAltLab;
     private javax.swing.JLabel labelRuaCadLab;
@@ -3333,8 +3590,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel labelUserLog;
     private javax.swing.JLabel labelValCusCadMed;
     private javax.swing.JLabel labelValMedicamento;
+    private javax.swing.JLabel labelValMedicamentoVen;
     private javax.swing.JLabel labelValVenCadMed;
     private javax.swing.JLabel labelValorTotal;
+    private javax.swing.JLabel labelValorTotalVen;
     private javax.swing.JPanel mainPainel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JRadioButton radioCresAltDrog;
@@ -3507,9 +3766,16 @@ public class Main extends javax.swing.JFrame {
         jareaDescCadMed.setDocument(new LimitaCaracteres(250, LimitaCaracteres.TipoEntrada.DESCRICAO));
         jtextValCusCadMed.setDocument(new LimitaCaracteres(6, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
         jtextValVenCadMed.setDocument(new LimitaCaracteres(6, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
-        jtextQtndCadMed.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
         //Tela Alteração de Medicamentos
-        
+        jtextIDAltMed.setDocument(new LimitaCaracteres(10, LimitaCaracteres.TipoEntrada.NUMEROINTEIRO));
+        jtextNomeAltMed.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        jareaDescAltMed.setDocument(new LimitaCaracteres(250, LimitaCaracteres.TipoEntrada.DESCRICAO));
+        jtextTipoAltMed.setDocument(new LimitaCaracteres(80, LimitaCaracteres.TipoEntrada.NOME));
+        jtextValorVendaAltMed.setDocument(new LimitaCaracteres(6, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
+        //Tela Compra
+        jtextPesquisaCbx.setDocument(new LimitaCaracteres(20, LimitaCaracteres.TipoEntrada.CNPJ));
+        jtextPesquisaNomeCompra.setDocument(new LimitaCaracteres(50, LimitaCaracteres.TipoEntrada.NOME));
+        jtextQtnCompra.setDocument(new LimitaCaracteres(5, LimitaCaracteres.TipoEntrada.NUMERODECIMAL));
     }
 //</editor-fold>
 
@@ -4080,9 +4346,6 @@ public class Main extends javax.swing.JFrame {
         } else if (jtextValVenCadMed.getText().equals("")) {
             jtextValVenCadMed.requestFocus();
             return false;
-        } else if (jtextQtndCadMed.getText().equals("")) {
-            jtextQtndCadMed.requestFocus();
-            return false;
         }
         return true;
     }
@@ -4096,7 +4359,7 @@ public class Main extends javax.swing.JFrame {
         m.setValorCusto(jtextValCusCadMed.getText());
         m.setValorVenda(jtextValVenCadMed.getText());
         m.setDataUltCompra(isValidDate(jformDataCompra.getText()));
-        m.setQuantidade(jtextQtndCadMed.getText());
+        m.setQuantidade("0");
 
         return m;
     }
@@ -4108,7 +4371,6 @@ public class Main extends javax.swing.JFrame {
         jtextValCusCadMed.setText(null);
         jtextValVenCadMed.setText(null);
         jformDataCompra.setText(null);
-        jtextQtndCadMed.setText(null);
     }
 //</editor-fold>
 
@@ -4159,7 +4421,6 @@ public class Main extends javax.swing.JFrame {
     private Medicamentos txtAltMed() {
         m.setDescrição(jareaDescAltMed.getText());
         m.setTipo(jtextTipoAltMed.getText());
-        m.setQuantidade(jtextQtndAltMed.getText());
         m.setValorVenda(jtextValorVendaAltMed.getText());
 
         return m;
@@ -4168,7 +4429,6 @@ public class Main extends javax.swing.JFrame {
     private void txtClearMed() {
         jareaDescAltMed.setText(null);
         jtextTipoAltMed.setText(null);
-        jtextQtndAltMed.setText(null);
         jtextValorVendaAltMed.setText(null);
         jtextIDAltMed.setText(null);
         jtextNomeAltMed.setText(null);
@@ -4176,9 +4436,7 @@ public class Main extends javax.swing.JFrame {
     }
 //</editor-fold>
 
-    
-
-//<editor-fold defaultstate="collapsed" desc="Tela Compra">
+    //<editor-fold defaultstate="collapsed" desc="Tela Compra">
     private void comboboxCNPJ() {
         cbxCnpjComp.removeAllItems();
         ComprasDao cd = new ComprasDao();
@@ -4201,7 +4459,9 @@ public class Main extends javax.swing.JFrame {
         String cod = a[0];
         String valorUnitario = cd.Valor(cod);
         String qtn = jtextQtnCompra.getText();
-        if ("".equals(jtextQtnCompra.getText())) {qtn = "0";}
+        if ("".equals(jtextQtnCompra.getText())) {
+            qtn = "0";
+        }
         int numQtn = Integer.parseInt(qtn);
         double numValorUnitario = Double.parseDouble(valorUnitario);
         labelValMedicamento.setText(valorUnitario);
@@ -4223,7 +4483,7 @@ public class Main extends javax.swing.JFrame {
         String[] a = cbxMedCompra.getSelectedItem().toString().split(" - ");
 
         c.setCnpj_Lab((String) cbxCnpjComp.getSelectedItem());
-        c.setCod_Med(a[1]);
+        c.setCod_Med(a[0]);
         c.setQntd_Med(Integer.parseInt(jtextQtnCompra.getText()));
         c.setValor_Unit(labelValMedicamento.getText());
         c.setValorTotal(labelValorTotal.getText());
@@ -4266,6 +4526,100 @@ public class Main extends javax.swing.JFrame {
         labelValorTotal.setText(null);
         jformDataCompra.setText(null);
         jformDataEntregaCompra.setText(null);
+    }
+
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Tela Compra">
+    private void comboboxCNPJVen() {
+        cbxCnpjVen.removeAllItems();
+        VendasDao vd = new VendasDao();
+        for (Object col : vd.comboboxCNPJ(jtextPesquisaCbxVen.getText())) {
+            cbxCnpjVen.addItem((String) col);
+        }
+    }
+
+    private void comboboxMedVen() {
+        cbxMedVen.removeAllItems();
+        VendasDao vd = new VendasDao();
+        for (Object col : vd.comboboxMedicamento(jtextPesquisaNomeVen.getText())) {
+            cbxMedVen.addItem((String) col);
+        }
+    }
+
+    private void ValorVen() {
+        VendasDao vd = new VendasDao();
+        String[] a = cbxMedVen.getSelectedItem().toString().split(" - ");
+        String cod = a[0];
+        String valorUnitario = vd.Valor(cod);
+        String qtn = jtextQtnVen.getText();
+        if ("".equals(jtextQtnVen.getText())) {
+            qtn = "0";
+        }
+        int numQtn = Integer.parseInt(qtn);
+        double numValorUnitario = Double.parseDouble(valorUnitario);
+        labelValMedicamentoVen.setText(valorUnitario);
+        labelValorTotalVen.setText(String.valueOf(numQtn * numValorUnitario));
+    }
+
+    private void Vender() {
+        if (isCamposValidVenda()) {
+            Vendas v = txtVender();
+            VendasDao vd = new VendasDao();
+            if (vd.inserir(v)) {
+                txtClearVenda();
+            }
+        }
+    }
+
+    private Vendas txtVender() {
+        Vendas v = new Vendas();
+        String[] a = cbxMedVen.getSelectedItem().toString().split(" - ");
+
+        v.setCnpj_Cliente((String) cbxCnpjVen.getSelectedItem());
+        v.setCod_Med(a[0]);
+        v.setQntd_Med(Integer.parseInt(jtextQtnVen.getText()));
+        v.setValor_Unit(Double.valueOf(labelValMedicamentoVen.getText()));
+        v.setValorTotal(Double.valueOf(labelValorTotalVen.getText()));
+        v.setTotalNota_V(Double.valueOf(labelValorTotalVen.getText()));
+        v.setFormaPag_V((String) jComboBox4.getSelectedItem());
+        v.setDataCompra_V(isValidDate(jformDataVen.getText()));
+        v.setDataEntrega_V(isValidDate(jformDataEntregaVen.getText()));
+
+        return v;
+    }
+
+    private boolean isCamposValidVenda() {
+        VendasDao vd = new VendasDao();
+        if (cbxCnpjVen.getSelectedItem() == null) {
+            cbxCnpjVen.requestFocus();
+            return false;
+        } else if (cbxMedVen.getSelectedItem() == null) {
+            cbxMedVen.requestFocus();
+            return false;
+        } else if (Integer.parseInt(jtextQtnVen.getText()) <= 0 && Integer.valueOf(vd.quantidade(jtextQtnVen.getText())) < Integer.valueOf(jtextQtnVen.getText())) {
+            jtextQtnVen.requestFocus();
+            return false;
+        } else if (jformDataVen.getText().equals("")) {
+            jformDataVen.requestFocus();
+            return false;
+        } else if (isValidDate(jformDataVen.getText()) == null) {
+            jformDataVen.requestFocus();
+            return false;
+        } else if (isValidDate(jformDataEntregaVen.getText()) == null) {
+            jformDataEntregaVen.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private void txtClearVenda() {
+        jtextPesquisaCbxVen.setText(null);
+        jtextPesquisaNomeVen.setText(null);
+        jtextQtnVen.setText("0");
+        labelValMedicamentoVen.setText(null);
+        labelValorTotalVen.setText(null);
+        jformDataVen.setText(null);
+        jformDataEntregaVen.setText(null);
     }
 
 //</editor-fold>

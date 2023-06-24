@@ -16,7 +16,7 @@ import javax.swing.text.PlainDocument;
 public class LimitaCaracteres extends PlainDocument {
 
     public enum TipoEntrada {
-        NUMEROINTEIRO, NUMERODECIMAL, NOME, EMAIL, LOGIN, SENHA, DATA, DESCRICAO, TELEFONE;
+        NUMEROINTEIRO, NUMERODECIMAL, NOME, EMAIL, LOGIN, SENHA, DATA, DESCRICAO, TELEFONE, CNPJ;
     };
 
     private int qtdCaracteres;
@@ -38,12 +38,13 @@ public class LimitaCaracteres extends PlainDocument {
         switch(tpEntrada){
             case NUMEROINTEIRO -> regex = "[^0-9]";
             case NUMERODECIMAL -> regex = "[^0-9,.]";
-            case NOME -> regex = "[^\\p{IsLatin}]";
+            case NOME -> regex = "[^\\p{IsLatin} ]";
             case DESCRICAO -> regex = "[^\\p{IsLatin}^0-9 ]";
             case EMAIL -> regex = "[^\\p{IsLatin}@.\\-_][^0-9]";
             case DATA -> regex = "[^0-9/]";
             case TELEFONE -> regex = "[^0-9()+-]";
             case LOGIN -> regex = "[^\\p{IsLatin}0-9]";
+            case CNPJ -> regex = "[0-9./]";
         }
         // fazendo a substituição
         string = string.replaceAll(regex, "");

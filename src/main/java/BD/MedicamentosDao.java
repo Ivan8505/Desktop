@@ -13,14 +13,13 @@ public class MedicamentosDao {
         CDB = new ConectionDB();
         try {
             PreparedStatement stmt = CDB.c.prepareStatement("INSERT INTO Medicamentos "
-                    + "(Cod_Med, Nome_Med, Tipo, Descricao, Valor_Venda, Valor_Custo, Qntd_Med, Data_UltCompra) VALUES (null, '"
+                    + "(Cod_Med, Nome_Med, Tipo, Descricao, Valor_Venda, Valor_Custo, Qntd_Med) VALUES (null, '"
                     + m.getNomeMed() + " ','"
                     + m.getTipo() + " ','"
                     + m.getDescrição() + " ',"
                     + m.getValorVenda() + ","
-                    + m.getValorCusto() + ","
-                    + m.getQuantidade() + ",'"
-                    + m.getDataUltimaCompra() + "');");
+                    + m.getValorCusto() + ",'"
+                    + m.getQuantidade() + "');");
             stmt.execute();
             return true;
         } catch (Exception e) {
@@ -87,8 +86,7 @@ public class MedicamentosDao {
     public boolean update(Medicamentos m) {
         String query = "UPDATE Medicamentos SET Descricao = '"
                 + m.getDescrição() + "', Tipo = '"
-                + m.getTipo() + "', Qntd_Med = '"
-                + m.getQuantidade() + "', Valor_Venda = '"
+                + m.getTipo() + "', Valor_Venda = '"
                 + m.getValorVenda() + "' WHERE Cod_Med = "
                 + m.getCodMed() + "";
         CDB = new ConectionDB();

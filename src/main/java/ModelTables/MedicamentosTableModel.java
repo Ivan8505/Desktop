@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 public class MedicamentosTableModel extends AbstractTableModel {
 
     private List<Medicamentos> Meds = new ArrayList<>();
-    private String[] colunas = {"Código do medicamento", "Nome", "Tipo", "Descrição", "Valor Venda", "Valor Custo", "Quantidade", "Data Ult Compra"};
+    private String[] colunas = {"ID", "Nome", "Tipo", "Descrição", "Valor Venda", "Valor Custo", "Quantidade", "Data Ult Compra"};
         
     @Override
     public String getColumnName(int column) {
@@ -80,4 +80,8 @@ public class MedicamentosTableModel extends AbstractTableModel {
         this.fireTableDataChanged();
     }
 
+    public void addList(ArrayList<Medicamentos> ls) {
+        this.Meds = ls;
+        this.fireTableDataChanged();
+    }
 }
