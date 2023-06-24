@@ -1,17 +1,16 @@
 package BD;
 
 import Objs.Funcionarios;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class FuncionariosDao {
-    
+
     private ConectionDB CDB;
     PreparedStatement stmt;
     ResultSet rs;
-    
+
     public String verifica(Funcionarios f) {
         CDB = new ConectionDB();
         String query = "SELECT Senha, Tipo_Func FROM Funcionarios WHERE Login = '"
@@ -28,7 +27,7 @@ public class FuncionariosDao {
         }
         return null;
     }
-    
+
     public ArrayList verificaUser() {
         ArrayList a;
         CDB = new ConectionDB();
@@ -36,10 +35,10 @@ public class FuncionariosDao {
         a = CDB.verifica(query, 1);
         return a;
     }
-    
+
     public boolean adicionar(Funcionarios f) {
         CDB = new ConectionDB();
-        
+
         if (CDB.verifica("SELECT *FROM USUARIOS_mortos WHERE Login = '" + f.getUser() + "';")) {
             return false;
         }
@@ -56,14 +55,14 @@ public class FuncionariosDao {
                 + f.getFoneAlt() + "','"
                 + f.getFoneRes() + "');");
     }
-    
+
     public boolean alter(Funcionarios f) {
         String query = "UPDATE Funcionarios SET Data_Nasc = '2000-10-02' WHERE Login = '"
                 + f.getDataNasc() + "';";
         CDB = new ConectionDB();
         return CDB.update(query);
     }
-    
+
     public boolean delete(Funcionarios f) {
         CDB = new ConectionDB();
         try {
@@ -91,7 +90,7 @@ public class FuncionariosDao {
         }
         return false;
     }
-    
+
     public ArrayList<Funcionarios> VerificaLike(Funcionarios f, String order, String desc) {
         String query;
         if (f.getUser() != null && f.getEmail() != null) {
@@ -123,12 +122,12 @@ public class FuncionariosDao {
         PreparedStatement stmt;
         ArrayList<Funcionarios> a = new ArrayList<>();
         try {
-            
+
             stmt = CDB.c.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 f = new Funcionarios();
-                
+
                 f.setId(rs.getString(1));
                 f.setNome(rs.getString(2));
                 f.setUser(rs.getString(3));
@@ -139,12 +138,33 @@ public class FuncionariosDao {
                 f.setFoneCel(rs.getString(8));
                 f.setFoneAlt(rs.getString(9));
                 f.setFoneRes(rs.getString(10));
-                
+
                 a.add(f);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return a;
+    }
+
+    public Funcionarios Verifica(Funcionarios f) {
+        try {
+            stmt = CDB.c.prepareStatement("SELECT *FROM Funcionarios WHERE Login = '" + f.getUser() + "';");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                f.setId(rs.getString(1));
+                f.setNome(rs.getString(2));
+                f.setUser(rs.getString(3));
+                //f.setSenha(rs.getString(4));
+                f.setEmail(rs.getString(5));
+                f.setTipoFunc(rs.getString(6));
+                f.setDataNasc(rs.getString(7));
+                f.setFoneCel(rs.getString(8));
+                f.setFoneAlt(rs.getString(9));
+                f.setFoneRes(rs.getString(10));
+            }
+        } catch (Exception e) {
+        }
+        return f;
     }
 }
