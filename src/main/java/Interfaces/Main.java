@@ -25,7 +25,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Toolkit;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
@@ -339,6 +338,7 @@ public class Main extends javax.swing.JFrame {
         barCompras = new javax.swing.JMenu();
         barMed = new javax.swing.JMenu();
         itemCadMed = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         barLab = new javax.swing.JMenu();
         itemCadLab = new javax.swing.JMenuItem();
         itemAltLab = new javax.swing.JMenuItem();
@@ -875,9 +875,8 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jtextTipoCadMed)
                             .addComponent(labelValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtextValVenCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(telaCadMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labelValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(labelValCusCadMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtextValCusCadMed, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(404, Short.MAX_VALUE))
         );
         telaCadMedLayout.setVerticalGroup(
@@ -2426,15 +2425,48 @@ public class Main extends javax.swing.JFrame {
         mainPainel.add(telaHome, "Home");
 
         barVendas.setText("Vendas");
+        barVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barVendasActionPerformed(evt);
+            }
+        });
+        barVendas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                barVendasKeyPressed(evt);
+            }
+        });
         menuBar.add(barVendas);
 
         barCompras.setText("Compras");
+        barCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barComprasActionPerformed(evt);
+            }
+        });
+        barCompras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                barComprasKeyPressed(evt);
+            }
+        });
         menuBar.add(barCompras);
 
         barMed.setText("Medicamentos");
 
         itemCadMed.setText("Cadastrar     Ctrl+M");
+        itemCadMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadMedActionPerformed(evt);
+            }
+        });
         barMed.add(itemCadMed);
+
+        jMenuItem1.setText("Alterar          Alt+M");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        barMed.add(jMenuItem1);
 
         menuBar.add(barMed);
 
@@ -3348,6 +3380,29 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jformDataEntregaVenKeyPressed
 
+    private void barVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barVendasActionPerformed
+        tela("Vendas");
+    }//GEN-LAST:event_barVendasActionPerformed
+
+    private void barComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barComprasActionPerformed
+    }//GEN-LAST:event_barComprasActionPerformed
+
+    private void itemCadMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadMedActionPerformed
+        tela("Cadastrar Medicamentos");
+    }//GEN-LAST:event_itemCadMedActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        tela("Alterar Medicamentos");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void barComprasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barComprasKeyPressed
+        tela("Compras");
+    }//GEN-LAST:event_barComprasKeyPressed
+
+    private void barVendasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barVendasKeyPressed
+        tela("Vendas");
+    }//GEN-LAST:event_barVendasKeyPressed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -3447,6 +3502,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
